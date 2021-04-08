@@ -7,6 +7,7 @@
       </h1>
       <div class="links">
         <button @click="handleClick">點我</button>
+        <button @click="handleColor">點我2222</button>
         <a
           href="https://nuxtjs.org/"
           target="_blank"
@@ -29,13 +30,18 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   methods: {
+    ...mapActions(['toRed']),
     handleClick () {
       this.$notify({
         title: 'Important message',
         text: 'Hello user!'
       });
+    },
+    handleColor () {
+      this.toRed('red')
     }
   }
 }

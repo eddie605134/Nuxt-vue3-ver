@@ -1,6 +1,6 @@
 import resources from '~/plugins/utils/resourse.js'
 
-export default function({ $axios, redirect }, inject) {
+export default function ({ $axios, redirect }, inject) {
   // request interceptor
   $axios.interceptors.request.use(
     config => {
@@ -13,32 +13,13 @@ export default function({ $axios, redirect }, inject) {
     }
   )
   $axios.onRequest(config => {
-    // console.log('Making request to ' + config.url)
+
   })
-  // response interceptor
+
   $axios.interceptors.response.use(
-    /**
-     * Determine the request status by custom code
-     * Here is just an example
-     * You can also judge the status by HTTP Status Code
-     */
-    // response => {
-    //   const res = response.data
-    //   if (response.status === 200) {
-    //     if (res.status?.code && (res.status?.code != 1 && res.status?.code !=2)) {
-    //       throw { response: {status: 500, code: res.status.code} };
-    //     }
-    //     return res
-    //   } else {
-    //     redirect('/404')
-    //     // if the custom code is not 200, it is judged as an error.
-    //   }
-    //   return Promise.reject(new Error(res.msg || 'Error'))
-    // },
-    // error => {
-    //   console.log('err' + error) // for debug
-    //   return Promise.reject(error)
-    // }
+    response => {
+
+    }
   )
   $axios.onError(error => {
     const code = parseInt(error.response && error.response.status)
@@ -50,7 +31,7 @@ export default function({ $axios, redirect }, inject) {
     }
   })
   if (!$axios) {
-    console.error( 'Please make sure $axios module is added');
+    console.error('Please make sure $axios module is added');
   } else {
     const newResources = resources($axios)
     inject('resources', newResources('https://vue-lessons-api.herokuapp.com'))
